@@ -1,0 +1,70 @@
+package javapratice1;
+
+
+import java.util.Scanner;
+
+public class BasicBank {
+    int current = 1000;
+    Scanner result = new Scanner(System.in);
+
+    public static void main(String[] args) {
+        BasicBank bank = new BasicBank();
+        bank.accountInformation();
+
+        boolean continueBanking = true;
+        while (continueBanking) {
+            System.out.println("\nChoose an operation:");
+            System.out.println("1. Deposit");
+            System.out.println("2. Withdraw");
+            System.out.println("3. Check the balance");
+            System.out.println("4. Exit");
+            int choice = bank.result.nextInt();
+
+            switch (choice) {
+                case 1:
+                    bank.deposit();
+                    break;
+                case 2:
+                    bank.withdraw();
+                    break;
+                case 3:
+                    bank.checkBalance();
+                    break;
+                case 4:
+                    continueBanking = false;
+                    System.out.println("Exit");
+                    break;
+                default:
+                    System.out.println("Invalid choice. Please try again.");
+            }
+        }
+        bank.result.close();
+    }
+
+    public void accountInformation() {
+        System.out.println("Hello, Welcome to Byte Code Bank");
+        System.out.println("Account Holder: Aravind");
+    }
+
+    public void deposit() {
+        System.out.println("Enter the amount to be deposited:");
+        int amount = result.nextInt();
+        current = current + amount;
+        System.out.println("The deposit was completed successfully."+current);
+    }
+
+    public void withdraw() {
+        System.out.println("Enter the amount to be withdrawn:");
+        int amount = result.nextInt();
+        if (amount <= current) {
+            current = current - amount;
+            System.out.println("The withdrawal was successful."+current);
+        } else {
+            System.out.println("Insufficient balance for the withdrawal.");
+        }
+    }
+
+    public void checkBalance() {
+        System.out.println("Your current balance is: " + current);
+    }
+}
